@@ -4,5 +4,8 @@ Start-Process -FilePath "c:\clamav-win-x64.msi" -ArgumentList "/qn", "/l*vs", "c
 Copy-Item "clamd.conf" "C:\Program Files\ClamAV\clamd.conf"; 
 Copy-Item "freshclam.conf" "C:\Program Files\ClamAV\freshclam.conf";
 
+New-Item -Path "C:\logs" -ItemType "directory"
+New-Item -Path "C:\db" -ItemType "directory"
+
 Start-Process -FilePath "C:\Program Files\ClamAV\clamd" -ArgumentList "--install-service" -Wait;
 Start-Process -FilePath "C:\Program Files\ClamAV\freshclam" -ArgumentList "--install-service" -Wait
