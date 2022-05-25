@@ -12,7 +12,10 @@ Start-Process -FilePath "C:\Program Files\ClamAV\freshclam";
 Start-Sleep -Seconds 20;
 
 Start-Process -FilePath "C:\Program Files\ClamAV\freshclam" -ArgumentList "--install-service" -Wait;
-Start-Process -FilePath "C:\Program Files\ClamAV\clamd" -ArgumentList "--install-service" -Wait;
+Start-Process -FilePath "C:\Program Files\ClamAV\clamd" -ArgumentList "--install-service" -Wait
 
-net start clamd;
+Set-Service -Name clamd -StartupType Automatic
+Set-Service -Name freshclam -StartupType Automatic
+
+net start clamd
 net start freshclam
