@@ -8,11 +8,11 @@ New-Item -Path "C:\db" -ItemType "directory" -Force;
 
 Set-Location "C:\Program Files\ClamAV";
 
-Start-Process -FilePath "C:\Program Files\ClamAV\freshclam";
+Start-Process -FilePath "C:\Program Files\ClamAV\freshclam" -verb runas;
 Start-Sleep -Seconds 20;
 
-Start-Process -FilePath "C:\Program Files\ClamAV\freshclam" -ArgumentList "--install-service" -Wait;
-Start-Process -FilePath "C:\Program Files\ClamAV\clamd" -ArgumentList "--install-service" -Wait
+Start-Process -FilePath "C:\Program Files\ClamAV\freshclam" -ArgumentList "--install-service" -Wait -verb runas;
+Start-Process -FilePath "C:\Program Files\ClamAV\clamd" -ArgumentList "--install-service" -Wait -verb runas;
 
 Set-Service -Name clamd -StartupType Automatic
 Set-Service -Name freshclam -StartupType Automatic
